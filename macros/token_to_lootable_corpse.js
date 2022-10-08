@@ -30,11 +30,11 @@ if (!canvas.tokens.controlled[0]) {
   if (confirm("Are you sure you want to replace the selected tokens with looteable corpses?")) {
     canvas.tokens.controlled.forEach((token) => {
       const inventory = token.actor.items.filter(i => lootableItemTypes.includes(i.type));
-      inventory.forEach(i => i.data.equipped = false);
+      inventory.forEach(i => i.system.equipped = false);
   
       const position = {
-        x: token.data.x + Math.floor(token.width / 2) - 3,
-        y: token.data.y + Math.floor(token.height / 2) - 3
+        x: token.x + Math.floor(canvas.grid.size / 2),
+        y: token.y + Math.floor(canvas.grid.size / 2)
       }
 
       const updates = {
