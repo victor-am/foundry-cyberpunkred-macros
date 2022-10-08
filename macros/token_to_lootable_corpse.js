@@ -1,6 +1,9 @@
 /* ----------------------------------
     Token to Lootable Corpse
    ----------------------------------
+   !!! REQUIRES THE "Warp Gate" MODULE !!!
+   https://foundryvtt.com/packages/warpgate
+
    To setup this macro create a container character
    and put it's name on the "baseContainerActorName"
    variable below.
