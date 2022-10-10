@@ -9,7 +9,7 @@
    variable below.
 ---------------------------------- */ 
 // Name of the container actor used as a template
-const baseContainerActorName = "Lootable Corpse Template"
+const baseContainerActorName = "Lootable Corpse Template";
 
 // Item types that should be lootable
 const lootableItemTypes = [
@@ -21,8 +21,24 @@ const lootableItemTypes = [
   "clothing",
   "cyberdeck",
   "program",
-  "upgrade"
+  "upgrade",
+  "cyberware"
 ];
+
+// Configures which types of cyberware are not be lootable
+//
+// Some cyberware types for reference:
+//   "cyberArm"
+//   "cyberwareInternal"
+//   "cyberEye"
+//   "fashionware"
+//   "neuralWare"
+//   "cyberLeg"
+//   "cyberAudioSuite"
+//   "borgware"
+const ignoredCyberwareTypes = ["fashionware"]; 
+const ignoredCyberwareInstallationType = ["hospital"]
+const ignoreFoundationalCyberware = true;
 /* ----------------------------------
    End
 ---------------------------------- */ 
@@ -32,8 +48,17 @@ if (!canvas.tokens.controlled[0]) {
 } else {
   if (confirm("Are you sure you want to replace the selected tokens with looteable corpses?")) {
     canvas.tokens.controlled.forEach((token) => {
-      const inventory = token.actor.items.filter(i => lootableItemTypes.includes(i.type));
-      inventory.forEach(i => i.system.equipped = false);
+      const inventory = token.actor.items.filter((i) => {
+        return lootableItemTypes.includes(i.type) &&
+               !ignoredCyberwareTypes.includes(i.system.type) &&
+               !ignoredCyberwareInstallationType.includes(i.system.install) &&
+               (ignoreFoundationalCyberware ? i.system.isFoundational != true : true)
+      });
+
+      inventory.forEach((i) => {
+        i.system.equipped = false;
+        i.system.isInstalled = false;
+      });
   
       const position = {
         x: token.x + Math.floor(canvas.grid.size / 2),
@@ -60,7 +85,7 @@ if (!canvas.tokens.controlled[0]) {
       };
       
       warpgate.spawnAt(position, baseContainerActorName, updates);
-      token.destroy();
+      token.document.delete();
     })
   }
 }
