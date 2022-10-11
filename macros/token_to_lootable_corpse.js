@@ -25,6 +25,9 @@ const lootableItemTypes = [
   "cyberware"
 ];
 
+// Item names that should be ignored
+const ignoredItemNames = [];
+
 // Configures which types of cyberware are not be lootable
 //
 // Some cyberware types for reference:
@@ -50,6 +53,7 @@ if (!canvas.tokens.controlled[0]) {
     canvas.tokens.controlled.forEach((token) => {
       const inventory = token.actor.items.filter((i) => {
         return lootableItemTypes.includes(i.type) &&
+               !ignoredItemNames.includes(i.name) &&
                !ignoredCyberwareTypes.includes(i.system.type) &&
                !ignoredCyberwareInstallationType.includes(i.system.install) &&
                (ignoreFoundationalCyberware ? i.system.isFoundational != true : true)
