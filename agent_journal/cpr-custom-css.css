@@ -4,10 +4,10 @@
 
 /*--- Custom Boxes ---*/
 .dbox {
-	padding: 20px 30px;
-	margin: 20px 10px;
-	background: #ccc;
-	box-shadow: -5px 5px 1px 0px rgba(0,0,0,0.6);
+  padding: 20px 30px;
+  margin: 20px 10px;
+  background: #ccc;
+  box-shadow: -5px 5px 1px 0px rgba(0,0,0,0.6);
 }
 
 .inbox {
@@ -25,10 +25,28 @@
 .journal-entry-content {
   background: url(https://assets.forge-vtt.com/6338a3aa866f8f73ed4b6ca4/Backgrounds/Agent%20Mini%20Frame%20HD.png) !important;
   background-size: cover !important;
+  position: relative;
+}
+
+.journal-entry-page.image figure img {
+  border: 1px solid #999999 !important;
+  border-radius: 4px !important;
 }
 
 .journal-header {
-  display: none;
+  width: 250px;
+  position: absolute;
+  left: 50%;
+  margin-top: 1px !important;
+  margin-left: -125px !important;
+  z-index: 1;
+}
+
+.journal-header > input {
+  color: #ddd;
+  border: 0px;
+  background: transparent !important;
+  font-size: 24px !important;
 }
 
 .journal-entry-pages > .scrollable {
