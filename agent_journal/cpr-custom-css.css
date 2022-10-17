@@ -33,7 +33,12 @@
   border-radius: 4px !important;
 }
 
-.journal-header {
+.journal-entry-page.image img {
+  border: 1px solid #999999 !important;
+  border-radius: 4px !important;
+}
+
+.journal-entry-content > .journal-header {
   width: 250px;
   position: absolute;
   left: 50%;
@@ -42,7 +47,7 @@
   z-index: 1;
 }
 
-.journal-header > input {
+.journal-entry-content > .journal-header > input {
   color: #ddd;
   border: 0px;
   background: transparent !important;
