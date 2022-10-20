@@ -3,4 +3,4 @@ dvTable = "DV Assault Rifle"
 
 token = canvas.tokens.controlled[0]
 token.document.flags.cprDvTable = dvTable
-ui.notifications.warn(`Range was set to ${dvTable}`);
+ui.notifications.info(`Range was set to ${dvTable}`);
